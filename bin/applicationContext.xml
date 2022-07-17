@@ -9,7 +9,9 @@
 
     <!-- Define your beans here -->
     <bean id="myCoach"
-    class = "com.prazz.springdemo.BaseballCoach">
+    class = "com.prazz.springdemo.TrackCoach">
+	    <!-- set up constructor injction -->
+	    <constructor-arg ref="myFortune" />
     </bean>
     
     <!-- 
@@ -20,6 +22,17 @@
     <bean id="myLoggerConfig" class="com.prazz.springdemo.MyLoggerConfig" init-method="initLogger">
     	<property name="rootLoggerLevel" value="FINE" />
     	<property name="printedLoggerLevel" value="FINE"/>
+    </bean>
+    
+    <!--  define the dependency-->
+    <bean id="myFortune"
+    class = "com.prazz.springdemo.HappyFortuneServices">
+    </bean>
+    
+    <bean id="myCricketCoach"
+    class="com.prazz.springdemo.CricketCoach">
+    	<!-- set up setter injction -->
+    	<property name="fortuneService" ref="myFortune"></property>
     </bean>
     
 </beans>
